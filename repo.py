@@ -54,10 +54,7 @@ class FoodRepository:
     def get_items_length(self):
         return len(self.data.data)
     
-    def get_by_location(self,location):
-        temp_data=self.data.data
-        temp_data=[item for item in temp_data if item['address'].lower().find(location.lower())!=-1]
-        return temp_data
+
 
     def get_all_food(self,start=0,limit=24,q='',zipcode='', max_distance=4):
         temp_data=self.data.data
