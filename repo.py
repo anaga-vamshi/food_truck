@@ -61,7 +61,7 @@ class FoodRepository:
 
         if zipcode:
             lat,lon=get_zipcode_coordinates(zipcode)
-            #get food items within 40 miles of zipcode
+            #get food items within 4 miles of zipcode
             if not lat or not lon:
                 temp_data=[]
             else:
