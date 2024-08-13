@@ -75,7 +75,10 @@ class FoodRepository:
 
         if q:
             temp_data=[item for item in temp_data if item['applicant'].lower().find(q.lower())!=-1]
-        return temp_data[start:start+limit]
+
+        total = len(temp_data)
+        itemsToReturn = temp_data[start:start+limit]
+        return total,itemsToReturn 
 
     #find where id is equals to cnn
 

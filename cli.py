@@ -5,8 +5,9 @@ from repo import FoodRepository
 food_repo = FoodRepository()
 
 def list_food(args):
-    items = food_repo.get_all_food(start=args.offset, limit=args.limit, q=args.query, zipcode=args.zipcode, max_distance=args.max_distance)
+    total,items = food_repo.get_all_food(start=args.offset, limit=args.limit, q=args.query, zipcode=args.zipcode, max_distance=args.max_distance)
     print(tabulate(items, headers='keys', tablefmt='heavy_grid'))
+    print(f"Total items: {total}")
     # print(json.dumps(items, indent=2))
 
 def get_food(args):

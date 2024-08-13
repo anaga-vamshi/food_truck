@@ -1,6 +1,6 @@
 
 
-from flask import Flask, jsonify, request, render_template,send_from_directory
+from flask import Flask, jsonify, request, render_template
 
 from repo import FoodRepository
 from db import save_email
@@ -17,12 +17,12 @@ def index(api=False):
     limit = request.args.get('limit', 24, type=int)
     offset = (page - 1) * limit
     zipcode = request.args.get('zipcode', '', type=str)
-    items = food_repo.get_all_food(start=offset, limit=limit, q=q, zipcode=zipcode)
-    pages = food_repo.get_items_length() // limit
+    total,items = food_repo.get_all_food(start=offset, limit=limit, q=q, zipcode=zipcode)
+    pages = total // limit
 
     if api:
         return jsonify(items)
-    return render_template('index.html', items=items, pages=pages, page=page, q=q, zipcode=zipcode)
+    return render_template('index.html', items=items, pages=pages, page=page, q=q, zipcode=zipcode, total=total)
 
 
 
